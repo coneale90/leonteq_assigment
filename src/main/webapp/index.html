@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leonteq Api</title>
+
+    <script src="src/js/lib/angular/angular.min.js"></script>
+    <script src="src/js/lib/angular/angular-animate.min.js"></script>
+    <script src="src/js/lib/angular/angular-aria.min.js"></script>
+    <script src="src/js/lib/angular/angular-messages.min.js"></script>
+    
+    <script src="src/js/lib/angular/angular-material.min.js"></script>
+    <script src="src/js/controller.js"></script>
+    
+    <link rel="stylesheet" href="src/css/lib/angular/angular-material.min.css">
+    <link rel="stylesheet" href="src/css/main.css">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+</head>
+<body ng-app="leonteqApp" ng-cloak>
+    <div ng-controller="leonteqController" layout-fill>
+        <md-content layout="column" layout-align="space-around stretch" style="min-height:50%;max-height:60%">
+        	<md-card flex = "40">
+        		<md-card-header>
+        			<md-card-header-text>
+        				<span class="md-headline">Convert Url</span>
+       				</md-card-header-text>
+        		</md-card-header>
+        		<md-card-content class="content-card-create">
+        			<md-content class="content-card-create" layout ="column" layout-margin layout-align="space-around stretch">
+	        			<md-input-container>
+							<label>Insert Url to short</label>
+							<input ng-model="urlToShortLoad" md-maxlength="2000" type="text">
+						</md-input-container>
+						<md-input-container>
+							<label>Insert Url to unshort</label>
+							<input ng-model="urlShortedLoad" type="text">
+						</md-input-container>
+					</md-content>
+					<md-content class="content-card-create" layout="row" layout-aling="center center">
+							<md-button ng-disabled="!urlToShortLoad || urlToShortCreate.length < 10" ng-click="shortUrl()">Short</md-button>
+							<md-button ng-disabled="!urlShortedLoad || urlShortedCreate.lenth < 10" ng-click="unshortUrl()">Unshort</md-button>
+					</md-content>
+        		</md-card-content>
+        	</md-card>
+        </md-content>
+    </div>
+</body>
+</html>

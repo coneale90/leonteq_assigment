@@ -1,0 +1,64 @@
+HOW-TO
+
+Prerequisites
+- Maven 1.8.0
+- MySql 5.7
+- Tomcat 7
+
+Steps
+- Run MySql Server
+- In your MySql create a DB named 'leonteqdb' and create the tables (
+- In context.xml of your tomcat installation add the following lines (change username, password, url with yours if necessary)
+	
+	<Resource name="jdbc/leonteqdb" auth="Container" 
+          type="javax.sql.DataSource"
+          maxTotal="100" maxIdle="30" 
+          maxWaitMillis="10000"
+          username="root" password="password" 
+          driverClassName="com.mysql.jdbc.Driver"
+          url="jdbc:mysql://localhost:3306/leonteqdb"/>
+
+- In the pom.xml project change:
+	
+	--the Java version with yours (line 12-13)
+		<properties>
+		    <maven.compiler.source>1.7</maven.compiler.source>
+		    <maven.compiler.target>1.7</maven.compiler.target>
+	  	</properties>
+	  	
+	--tomcat webapp path with your tomcat webapp path(line 31)
+		<webappDirectory>{TOMCAT_WEBAPP_FOLDER}/assignement-api/</webappDirectory>
+
+- Open a terminal and move in project directory 
+- Run the command 'mvn install'
+- Run your tomcat installation
+- With your browser go to 'http://localhost:8080/assignement-api/' (localhost:8080 or your server ip:port)
+- Convert your link!
+
+
+PROJECT TECHNOLOGY
+- I used Java as main technology concurrently with maven to automate the dependencies and the deploy
+- RestEasy to implement the REST services because is easy and flexible with good compatibility
+- MySql because is free, stable and large used in production. Also It is possible to modify MySql to reach more powerful (https://gigaom.com/2011/12/06/facebook-shares-some-secrets-on-making-mysql-scale/)
+- I chose Tomcat because the set up time is less than other solution as JBoss
+- To Test the code I used JUnit + PowerMockito. PowerMockito is nice library that add interesting feature (as Statick Mock) to Mockito Library
+- In the interface I used AngularJS + Material Angular to reach a simple interface in few time, moreover AngularJS is very powerful and growing technology
+
+POSSIBLE ERROR
+-If the DB connect doesn't work could be necessary to copy in TOMCAT_INSTALLATION/lib the java connect mysql-connector-java-5.1.40.jar
+
+TODO
+
+Interface
+- Add info message
+- Add error message and change color of input for not valid Url
+- Disable button if the Url is not valid
+
+Core
+- Manage error
+- Add log4j for log message
+- Improve conversion algorithm (avoid conflict)
+- Move BadWord list in file, read the file in the InitSystem
+- Improve Cache
+- Add auto-creation of the table (use Liquibase)
+
